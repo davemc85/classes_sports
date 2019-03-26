@@ -24,7 +24,21 @@ class Library
     return nil
   end
 
+  def add_book(title)
+    new_book = {
+      title: title,
+      rental_details: {
+        student_name: "",
+        date: ""
+      }
+    }
+    @books << new_book
+  end
 
+  def rent_book(title, student, date)
+    book = find_by_title(title)
+    book[:rental_details] = {student_name: student, date: date}
+  end
 
 
 end

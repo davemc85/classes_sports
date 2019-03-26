@@ -40,5 +40,21 @@ class LibraryTest < MiniTest::Test
     }, rental_details)
   end
 
+  def test_can_add_book()
+    @library.add_book("Colour_of_magic")
+    book = @library.find_by_title("Colour_of_magic")
+    assert_equal({title: "Colour_of_magic",
+      rental_details: {
+        student_name: "",
+        date: ""
+        }}, book)
+  end
+
+  def test_can_rent_book()
+    @library.rent_book("Fever Pitch", "Jeff", "26/03/19")
+    rental_details = @library.find_rental_details("Fever Pitch")
+    assert_equal({student_name: "Jeff", date: "26/03/19"}, rental_details)
+  end
+
 
 end
